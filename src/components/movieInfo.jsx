@@ -11,11 +11,18 @@ function MovieInfo(props) {
     },[])
 
     const doApi = async() => {
-        let myUrl = `http://www.omdbapi.com/?i=${params["id"]}&apikey=5a292f28`;
-        let resp = await fetch(myUrl);
-        let data = await resp.json();
-        console.log(data);
-        setItem(data)
+        let myUrl = `http://www.omdbapi.com/?i=${params["id"]}&apikey=7ab0a339`;
+        try{
+
+            let resp = await fetch(myUrl);
+            let data = await resp.json();
+            console.log(data);
+            setItem(data)
+        }
+        catch(err){
+            console.log(err)
+            alert(err)
+        }
       }
 
     return (
