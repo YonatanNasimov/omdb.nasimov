@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from "react-router-dom"
+import axios from 'axios'
 import VodList from './vodList'
 import VodStrip from './vodStrip'
 
@@ -17,10 +18,9 @@ function Home() {
   const doApi = async (_searchQ) => {
     let myUrl = `http://www.omdbapi.com/?s=${_searchQ}&apikey=7ab0a339`;
     try {
-      let resp = await fetch(myUrl);
-      let data = await resp.json();
-      console.log(data);
-      setAr(data.Search)
+      let resp = await axios.get(myUrl);
+      console.log(resp.data);
+      setAr(resp.data.Search)
     }
     catch (err) {
       console.log(err)

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 function MovieInfo(props) {
     const params = useParams();
@@ -14,10 +15,9 @@ function MovieInfo(props) {
         let myUrl = `http://www.omdbapi.com/?i=${params["id"]}&apikey=7ab0a339`;
         try{
 
-            let resp = await fetch(myUrl);
-            let data = await resp.json();
-            console.log(data);
-            setItem(data)
+            let resp = await axios.get(myUrl);
+            console.log(resp.data);
+            setItem(resp.data)
         }
         catch(err){
             console.log(err)
